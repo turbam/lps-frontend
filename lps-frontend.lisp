@@ -8,8 +8,11 @@
 (defparameter *random-color* sdl:*white*)
 (defun mouse-rect-2d (parts)
   (sdl:with-init ()
-    (sdl:window 800 800 :title-caption "Move a rectangle using the mouse")
-    (setf (sdl:frame-rate) 220)    
+    (sdl:window 800 800 :title-caption "Move a rectangle using the mouse"
+		:fps (make-instance 'sdl:fps-timestep
+				    :dt 2
+				    :max-dt 100))
+    (setf (sdl:frame-rate) 60)    
     (sdl:with-events ()
       (:quit-event () t)
       (:key-down-event ()
@@ -24,7 +27,7 @@
 		    (sdl:draw-circle-* (floor (+ 400 (car i)))
 				       (floor (+ 400 (cadr i)))
 				       13 :color sdl:*white*))
-
-	       (setq parts (lps::misc parts))
+	       (sdl:with-timestep ()
+				  (setq parts (lps::misc parts)))
 	       ;; Redraw the display
 	       (sdl:update-display))))))
