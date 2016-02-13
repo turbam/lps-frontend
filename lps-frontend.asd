@@ -5,6 +5,7 @@
   :author "Your Name <your.name@example.com>"
   :license "Specify license here"
   :depends-on (#:lispbuilder-sdl
+	       #:lispbuilder-sdl-ttf
                #:lps)
   :serial t
   :components ((:file "package")
