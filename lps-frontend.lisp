@@ -6,6 +6,10 @@
 
 
 (defparameter *random-color* sdl:*white*)
+
+(defun start-sim (number-of-particles)
+  (mouse-rect-2d (lps::gen-random-particles number-of-particles)))
+
 (defun mouse-rect-2d (parts)
   (sdl:with-init ()
     (sdl:window 600 600 :title-caption "Lisp Particle Simulator"
